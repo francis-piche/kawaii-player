@@ -1,0 +1,15 @@
+---
+app-id: io.github.francis-piche.Kawaii-player
+command: kawaii-player
+modules:
+  - build-commands:
+      - install -D kawaii-player.sh /app/bin/kawaii-player.sh
+    buildsystem: simple
+    name: kawaii-player
+    sources:
+      - path: kawaii-player.sh
+        type: file
+runtime: org.freedesktop.Platform
+runtime-version: "19.08"
+sdk: org.freedesktop.Sdk
+...

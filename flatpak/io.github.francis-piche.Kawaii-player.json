@@ -1,0 +1,79 @@
+{
+    "app-id": "io.github.francis-piche.Kawaii-player",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "kawaii-player",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--share=network",
+        "--device=dri",
+        "--socket=pulseaudio",
+        "--filesystem=host",
+        "--filesystem=xdg-config/kdeglobals:ro",
+        "--env=PYTHONPATH=/app/lib/python3/dist-packages",
+    ],
+    "modules": [
+        {
+            "name": "sip",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --prefix=/app ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/s/sip/sip-5.0.0.tar.gz",
+                    "sha256": "c034d427f52584d63277dd7df4d16d00c5df0b5cb838e0c256865b854b7e074b"
+                }
+            ]
+        },
+        {
+            "name": "pyqt",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python3 configure.py --confirm-license --sip-incdir=/app/include/python3 --bindir=/app/bin --destdir=/app/lib/python3/dist-packages --designer-plugindir=/app/lib/plugins/designer --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip --stubsdir=/app/lib/python3/dist-packages/PyQt5",
+                "make -j $FLATPAK_BUILDER_N_JOBS",
+                "make install"
+            ],
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz",
+                    "sha256": ""
+                }
+            ]
+        },
+        {
+            "name": "",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --prefix=/app ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "",
+                    "sha256": ""
+                }
+            ]
+        },
+        {
+            "name": "kawaii-player",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D kawaii-player.sh /app/bin/kawaii-player.sh"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "kawaii-player.sh"
+                }
+            ]
+        }
+    ]
+}
