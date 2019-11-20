@@ -23,7 +23,7 @@ try:
 except ImportError:
     from req_urllib import RequestObjectUrllib
     from log import log_function
-    
+
 logger = log_function(__name__)
 
 
@@ -34,15 +34,14 @@ def complete_function_request(func, kargs):
 
 def get_request(backend, url, hdrs, method, kargs):
     req_obj = None
-    if backend == 'urllib':
+    if backend == "urllib":
         req = RequestObjectUrllib(url, hdrs, method, kargs)
         req_obj = req.process_request()
     return req_obj
-    
+
 
 class URL:
-    
     def __init__(self, url, depth=0):
         self.url = url
         self.depth = depth
-        self.title = ''
+        self.title = ""

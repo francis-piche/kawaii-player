@@ -19,12 +19,13 @@ along with tvdb-async.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
 
+
 def log_function(name):
     logging.basicConfig(level=logging.DEBUG)
-    logging.getLogger('asyncio').setLevel(logging.WARNING)
-    #fmt = '%(asctime)-15s::%(module)s:%(funcName)s: %(levelname)-7s - %(message)s'
-    #formatter_ch = logging.Formatter(fmt)
-    fmt = '%(lineno)s::%(levelname)s::%(module)s::%(funcName)s: %(message)s'
+    logging.getLogger("asyncio").setLevel(logging.WARNING)
+    # fmt = '%(asctime)-15s::%(module)s:%(funcName)s: %(levelname)-7s - %(message)s'
+    # formatter_ch = logging.Formatter(fmt)
+    fmt = "%(lineno)s::%(levelname)s::%(module)s::%(funcName)s: %(message)s"
     formatter_ch = logging.Formatter(fmt)
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
