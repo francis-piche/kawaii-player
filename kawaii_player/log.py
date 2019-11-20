@@ -19,12 +19,16 @@ along with aclh.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
 
+
 class Logging:
-    
     def __init__(self, name, file_name_log, TMPDIR):
         logging.basicConfig(level=logging.DEBUG)
-        formatter_fh = logging.Formatter('%(asctime)-15s::%(module)s:%(funcName)s: %(levelname)-7s - %(message)s')
-        formatter_ch = logging.Formatter('%(levelname)s::%(module)s::%(funcName)s: %(message)s')
+        formatter_fh = logging.Formatter(
+            "%(asctime)-15s::%(module)s:%(funcName)s: %(levelname)-7s - %(message)s"
+        )
+        formatter_ch = logging.Formatter(
+            "%(levelname)s::%(module)s::%(funcName)s: %(message)s"
+        )
         fh = logging.FileHandler(file_name_log)
         fh.setLevel(logging.DEBUG)
         ch = logging.StreamHandler()
@@ -34,38 +38,37 @@ class Logging:
         self.logger = logging.getLogger(name)
         self.logger.addHandler(ch)
         self.logger.addHandler(fh)
-    
+
     def get_logger(self):
         return self.logger
-    
+
     def info(self, *args):
         args_list = [str(i) for i in args]
-        args_str = '; '.join(args_list)
+        args_str = "; ".join(args_list)
         self.logger.info(args_str)
-        
+
     def debug(self, *args):
         args_list = [str(i) for i in args]
-        args_str = '; '.join(args_list)
+        args_str = "; ".join(args_list)
         self.logger.debug(args_str)
-        
+
     def warning(self, *args):
         args_list = [str(i) for i in args]
-        args_str = '; '.join(args_list)
+        args_str = "; ".join(args_list)
         self.logger.warning(args_str)
-        
+
     def error(self, *args):
         args_list = [str(i) for i in args]
-        args_str = '; '.join(args_list)
+        args_str = "; ".join(args_list)
         self.logger.error(args_str)
-        
+
     def set_level(self, level):
         level = level.lower()
-        if level == 'info':
+        if level == "info":
             self.logger.setLevel(logging.INFO)
-        elif level == 'debug':
+        elif level == "debug":
             self.logger.setLevel(logging.DEBUG)
-        elif level in ['warning', 'warn']:
+        elif level in ["warning", "warn"]:
             self.logger.setLevel(logging.WARNING)
-        elif level == 'error':
+        elif level == "error":
             self.logger.setLevel(logging.ERROR)
-        

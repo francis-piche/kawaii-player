@@ -17,12 +17,13 @@ You should have received a copy of the GNU Lesser General Public License
 along with tvdb-async.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+
 def search_onfinished(func):
     def wrapper(*args, **kargs):
         search_dict, search_n_grab = func(*args, **kargs)
         if search_n_grab:
             new_url = None
-            for key,value in search_dict.items():
+            for key, value in search_dict.items():
                 if value:
                     new_url = value[1]
                     break
@@ -30,35 +31,44 @@ def search_onfinished(func):
                 args[0].getinfo(new_url, onfinished=args[1], eps=args[3])
         else:
             args[1](search_dict, *args)
+
     return wrapper
+
 
 def process_episodes_onfinished(func):
     def wrapper(*args, **kargs):
         obj, info = func(*args, **kargs)
         if obj:
             if isinstance(info, str):
-                args[1](obj, 'episode-info')
+                args[1](obj, "episode-info")
             else:
                 args[1](obj, info)
+
     return wrapper
-    
+
+
 def process_seasons_onfinished(func):
     def wrapper(*args, **kargs):
         obj = func(*args, **kargs)
         if obj:
-            args[1](obj, 'season-info')
+            args[1](obj, "season-info")
+
     return wrapper
-    
+
+
 def process_page_onfinished(func):
     def wrapper(*args, **kargs):
         obj = func(*args, **kargs)
         if obj:
-            args[1](obj, 'info')
+            args[1](obj, "info")
+
     return wrapper
+
 
 def process_artwork_onfinished(func):
     def wrapper(*args, **kargs):
         obj, title = func(*args, **kargs)
         if obj:
             args[1](obj, title)
+
     return wrapper

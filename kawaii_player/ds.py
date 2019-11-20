@@ -17,18 +17,17 @@ You should have received a copy of the GNU General Public License
 along with kawaii-player.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+
 class CustomList:
-    
     def __init__(self):
         self.mylist = []
         self.index = -1
         self.ptr = -1
-        
+
     def add_item(self, item):
         self.mylist.append(item)
         self.index = len(self.mylist) - 1
-            
-    
+
     def remove_item(self, item=None, index=None):
         if item is not None:
             try:
@@ -36,13 +35,13 @@ class CustomList:
                 del self.mylist[i]
                 self.index = len(self.mylist) - 1
             except Exception as err:
-                print(err, '--456--')
+                print(err, "--456--")
         elif index is not None:
             if isinstance(index, int):
                 if index < len(self.mylist):
                     del self.mylist[index]
                     self.index = len(self.mylist) - 1
-                    
+
     def get_prev(self):
         item = None
         if self.mylist:
@@ -55,7 +54,7 @@ class CustomList:
             else:
                 self.ptr = -1
         return item
-        
+
     def get_next(self):
         item = None
         if self.mylist:
@@ -68,13 +67,13 @@ class CustomList:
             else:
                 self.ptr = -1
         return item
-        
+
     def get_total(self):
         return self.index
-        
+
     def get_ptr(self):
         return self.ptr
-        
+
     def get_item(self, item=None, index=None):
         val = None
         if item is not None:
@@ -83,22 +82,21 @@ class CustomList:
                 val = self.mylist[i]
                 self.ptr = i
             except Exception as err:
-                print(err, '--83--')
+                print(err, "--83--")
         elif index is not None:
             if isinstance(index, int):
-                if index < len(self.mylist) and index >=0:
+                if index < len(self.mylist) and index >= 0:
                     val = self.mylist[index]
                     self.ptr = index
         elif self.mylist:
             val = self.mylist[-1]
             self.ptr = self.index
         return val
-        
+
     def get_list(self):
         return self.mylist
-        
+
     def clear(self):
         self.mylist.clear()
         self.index = -1
         self.ptr = -1
-                

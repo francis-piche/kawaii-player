@@ -21,40 +21,42 @@ import os
 import uuid
 import mimetypes
 
+
 class Formdata:
-    
     def __init__(self, form_dict, file_dict):
         self.form_dict = form_dict
         self.file_dict = file_dict
         self.final_list = []
         boundary = str(uuid.uuid4())
-        boundary = boundary.replace('-', '')
-        self.boundary = '----------' + boundary
-    
+        boundary = boundary.replace("-", "")
+        self.boundary = "----------" + boundary
+
     def get_content_type(self, filename):
-        return mimetypes.guess_type (filename)[0] or 'application/octet-stream'
-    
+        return mimetypes.guess_type(filename)[0] or "application/octet-stream"
+
     def arrange_files(self, file_title, file_path, boundary, new_boundary=None):
         file_type = self.get_content_type(file_path)
         file_name = os.path.basename(file_path)
         if new_boundary:
-            self.final_list.append(bytes(new_boundary, 'utf-8'))
+            self.final_list.append(bytes(new_boundary, "utf-8"))
         else:
-            self.final_list.append(bytes(boundary, 'utf-8'))
+            self.final_list.append(bytes(boundary, "utf-8"))
         if new_boundary:
-            hdr = 'Content-Disposition: file; filename="{}"'.format('files', file_name)
+            hdr = 'Content-Disposition: file; filename="{}"'.format("files", file_name)
         else:
-            hdr = 'Content-Disposition: form-data; name="{}"; filename="{}"'.format(file_title, file_name)
-        self.final_list.append(bytes(hdr, 'utf-8'))
-        hdr = 'Content-Type: {}'.format(file_type)
-        self.final_list.append(bytes(hdr, 'utf-8'))
-        self.final_list.append(b'')
-        with open(file_path, 'rb') as f:
+            hdr = 'Content-Disposition: form-data; name="{}"; filename="{}"'.format(
+                file_title, file_name
+            )
+        self.final_list.append(bytes(hdr, "utf-8"))
+        hdr = "Content-Type: {}".format(file_type)
+        self.final_list.append(bytes(hdr, "utf-8"))
+        self.final_list.append(b"")
+        with open(file_path, "rb") as f:
             content = f.read()
             self.final_list.append(content)
-        
+
     def create_content(self):
-        boundary = '--' + self.boundary
+        boundary = "--" + self.boundary
         if isinstance(self.form_dict, (dict, tuple)):
             for key_val in self.form_dict:
                 if isinstance(self.form_dict, dict):
@@ -62,26 +64,25 @@ class Formdata:
                     value = self.form_dict.get(key)
                 else:
                     key, value = key_val
-                self.final_list.append(bytes(boundary, 'utf-8'))
+                self.final_list.append(bytes(boundary, "utf-8"))
                 hdr = 'Content-Disposition: form-data; name="{}"'.format(key)
-                self.final_list.append(bytes(hdr, 'utf-8'))
-                self.final_list.append(b'')
-                self.final_list.append(bytes(value, 'utf-8'))
+                self.final_list.append(bytes(hdr, "utf-8"))
+                self.final_list.append(b"")
+                self.final_list.append(bytes(value, "utf-8"))
         if self.file_dict and isinstance(self.file_dict, str):
-            self.arrange_files('filedata', self.file_dict, boundary)
+            self.arrange_files("filedata", self.file_dict, boundary)
         elif self.file_dict and isinstance(self.file_dict, tuple):
             for i, value in enumerate(self.file_dict):
-                title = 'filedata-{}'.format(i)
+                title = "filedata-{}".format(i)
                 self.arrange_files(title, value, boundary)
         elif self.file_dict and isinstance(self.file_dict, dict):
             for key, value in self.file_dict.items():
                 self.arrange_files(key, value, boundary)
-        self.final_list.append(bytes(boundary+'--', 'utf-8'))
-        self.final_list.append(b'')
-        body = b'\r\n'.join (self.final_list)
+        self.final_list.append(bytes(boundary + "--", "utf-8"))
+        self.final_list.append(b"")
+        body = b"\r\n".join(self.final_list)
         hdrs = {
-            'Content-Type': 'multipart/form-data; boundary={}'.format(self.boundary),
-            'Content-Length': str(len(body))
-            }
+            "Content-Type": "multipart/form-data; boundary={}".format(self.boundary),
+            "Content-Length": str(len(body)),
+        }
         return body, hdrs
-        
