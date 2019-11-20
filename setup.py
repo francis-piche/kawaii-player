@@ -31,10 +31,9 @@ from setuptools import setup
 if os.name == 'posix':
     install_dependencies = []
 else:
-    install_dependencies = [
-        'PyQt5', 'pycurl', 'bs4', 'Pillow', 'mutagen', 'lxml', 'youtube_dl',
-        'certifi', 'PyQtWebEngine', 'PyOpenGL'
-        ]
+    with open('requirements.txt') as f:
+        install_dependencies = f.read().strip().split('\n')
+
 setup(
     name='kawaii-player', 
     version='4.2.0', 
