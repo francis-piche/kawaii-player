@@ -1,8 +1,0 @@
-{
-    "name": "python3-pyqt5",
-    "buildsystem": "simple",
-    "build-commands": [
-        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyqt5"
-    ],
-    "sources": []
-}

@@ -1,0 +1,12 @@
+---
+id: io.github.kanishka-linux.Kawaii-player
+command: kawaii-player
+modules:
+  - name: kawaii-player
+    buildsystem: simple
+    build-commands:
+      - install -D kawaii-player.sh /app/bin/kawaii-player.sh
+    sources:
+      - type: file
+        path: ../kawaii_player/
+...

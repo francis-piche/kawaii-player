@@ -1,0 +1,14 @@
+{
+    "name": "python3-mutagen",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} mutagen"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/08/34/e68d377ab1375af21feef9226d778ed3e6618b2f572538a85fc7c8ae9a4b/mutagen-1.43.0-py2.py3-none-any.whl",
+            "sha256": "43a7d86d5ef05e2bd5bb8292678b2f9988b729aa440f45d8737ecba105db5182"
+        }
+    ]
+}

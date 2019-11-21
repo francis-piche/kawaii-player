@@ -1,0 +1,14 @@
+{
+    "name": "python3-youtube_dl",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} youtube_dl"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/35/f6/c36b2e8dd3fd528e4b10f4061ff97e086448ae248df243e34b9019bc6a50/youtube_dl-2019.11.5-py2.py3-none-any.whl",
+            "sha256": "1314de17f0d41c0f1062c4942406b8e0558d14d44b32f9fce00272760a06455b"
+        }
+    ]
+}
