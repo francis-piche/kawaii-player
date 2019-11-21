@@ -5,13 +5,25 @@ import re
 import webbrowser
 import argparse
 import sys
+import os
 
 
-def check_update(current_version):
+def check_update():
     # parser = argparse.ArgumentParser(description='arg parser')
     # parser.add_argument("--v", default=1, help="current user version")
     # args = parser.parse_args()
     # current_version = args.v
+
+    if getattr(sys, 'frozen', False):
+        BASEDIR, BASEFILE = os.path.split(os.path.abspath(sys.executable))
+    else:
+        BASEDIR, BASEFILE = os.path.split(os.path.abspath(__file__))
+        print(BASEDIR, BASEFILE, os.getcwd())
+        sys.path.insert(0, BASEDIR)
+        RESOURCE_DIR = os.path.join(BASEDIR, 'version.txt')
+
+    with open(RESOURCE_DIR, 'r') as fin:
+        current_version = fin.read()
 
     sg.change_look_and_feel('DarkBlue1')
 
@@ -35,6 +47,9 @@ def check_update(current_version):
             print(event)
             if(event == 'Yes'):
                 webbrowser.open_new_tab('https://github.com/kanishka-linux/kawaii-player/blob/master/README.md#dependencies-and-installation')
+                window.close()
                 sys.exit()
+            else: 
+                window.close()
     else:
         print('Kawii-updater Error: Unable to verify current version from github')

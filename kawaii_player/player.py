@@ -7,8 +7,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from player_functions import ccurl, open_files
 import auto_update
 
-current_installed_version = '0.0.2'
-auto_update.check_update(current_installed_version)
+
+auto_update.check_update()
 
 class PlayerWidget(QtWidgets.QWidget):
     
