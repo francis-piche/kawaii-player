@@ -53,7 +53,7 @@ def test_json_remove_comments():
 def json_to_yaml(json_data):
     """Takes encoded json and returns encoded yaml"""
 
-    json_data = json_remove_comments(json_data)
+    json_data = json_remove_comments(json_data).decode('utf-8')
     data = json.loads(json_data, object_pairs_hook=OrderedDict)
 
     class OrderedDumper(yaml.Dumper):
