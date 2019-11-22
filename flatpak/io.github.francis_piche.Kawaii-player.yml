@@ -5,21 +5,61 @@ sdk: org.freedesktop.Sdk
 command: kawaii-player
 finish-args:
   - --socket=x11
-  - --share=network
+  - --share=ipc
+  - --device=dri
   - --socket=pulseaudio
+  - --share=network
   - --filesystem=host
+  - --env=PYTHONPATH=/app/lib/python3/dist-packages
 modules:
   - python3-sip.json
   - name: pyqt
     buildsystem: simple
     build-commands:
-      - pip3 install --prefix=/app .
+      - pip3 install --prefix=/app --no-deps .
+    build-options:
+      arch:
+        i386:
+          config-opts:
+            - --enable=QtCore
+            - --enable=QtGui
+            - --enable=QtNetwork
+            - --enable=QtPrintSupport
+            - --enable=QtWebChannel
+            - --enable=QtWidgets
+        x86_64:
+          config-opts:
+            - --enable=QtCore
+            - --enable=QtGui
+            - --enable=QtNetwork
+            - --enable=QtPrintSupport
+            - --enable=QtWebChannel
+            - --enable=QtWidgets
+    config-opts:
+      - --assume-shared
+      - --concatenate
+      - --confirm-license
+      - --no-designer-plugin
+      - --no-dist-info
+      - --no-docstrings
+      - --no-qml-plugin
+      - --no-qsci-api
+      - --no-stubs
+      - --no-tools
+      - QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.7m/'
+      - QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.7m/'
     cleanup:
       - /bin
+      - /share/sip
     sources:
       - type: archive
         url: https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz
         sha256: adc17c077bf233987b8e43ada87d1e0deca9bd71a13e5fd5fc377482ed69c827
+      - type: script
+        commands:
+          - processed=`sed -e 's|prefix|sysroot|' <<< $@`
+          - python3 configure.py $processed
+        dest-filename: configure
   - name: pycurl
     buildsystem: simple
     build-commands:
@@ -49,12 +89,6 @@ modules:
     build-commands:
       - python3 ../setup.py
     sources:
-      - type: dir
-        path: ../
       - type: git
         path: ../
         branch: flatpak
-      - type: git
-        url: https://github.com/francis-piche/kawaii-player.git
-        branch: flatpak
-        commit: 8f5c772f9b5fe821a396ff80ecd5b1d169734810
