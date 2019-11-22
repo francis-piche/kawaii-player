@@ -1,5 +1,12 @@
+# Python headers
 *.pyc
 __pycache__/
+
+# Tox and tests
 .tox/
 .coverage
 .pytest_cache/
+
+# Flatpak
+flatpak/.flatpak-builder
+flatpak/build-dir
