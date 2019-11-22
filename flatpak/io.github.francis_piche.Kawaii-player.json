@@ -1,0 +1,95 @@
+{
+    "app-id": "io.github.francis_piche.Kawaii-player",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "kawaii-player",
+    "finish-args": [
+        "--socket=x11",
+        "--share=network",
+        "--socket=pulseaudio",
+        "--filesystem=host",
+        "--env=PYTHONPATH=/app/lib/python3/dist-packages"
+    ],
+    "modules": [
+        "python3-sip.json",
+        {
+            "name": "pyqt",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python3 configure.py --confirm-license --sip-incdir=/app/include/python3 --bindir=/app/bin --destdir=/app/lib/python3/dist-packages --designer-plugindir=/app/lib/plugins/designer --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip --stubsdir=/app/lib/python3/dist-packages/PyQt5",
+                "make -j $FLATPAK_BUILDER_N_JOBS",
+                "make install"
+            ],
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz",
+                    "sha256": "adc17c077bf233987b8e43ada87d1e0deca9bd71a13e5fd5fc377482ed69c827"
+                }
+            ]
+        },
+        {
+            "name": "pycurl",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --prefix=/app ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/p/pycurl/pycurl-7.43.0.3.tar.gz",
+                    "sha256": "6f08330c5cf79fa8ef68b9912b9901db7ffd34b63e225dce74db56bb21deda8e"
+                }
+            ]
+        },
+        "python3-bs4.json",
+        "python3-Pillow.json",
+        "python3-mutagen.json",
+        "python3-lxml.json",
+        "python3-youtube_dl.json",
+        "python3-certifi.json",
+        {
+            "name": "pyqtwebengine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyqtwebengine"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/PyQtWebEngine/5.13.2/PyQtWebEngine-5.13.2.tar.gz",
+                    "sha256": "4264911b5847c75721d8c9c30af92e58a216bd25ceef37f7abf921005c1d45a9"
+                }
+            ]
+        },
+        "python3-PyOpenGL.json",
+        {
+            "name": "kawaii-player",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python3 ../setup.py"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "../"
+                },
+                {
+                    "type": "git",
+                    "path": "../",
+                    "branch": "flatpak"
+                },
+                {
+                    "type": "git",
+                    "url": "https://github.com/francis-piche/kawaii-player.git",
+                    "branch": "flatpak",
+                    "commit": "8f5c772f9b5fe821a396ff80ecd5b1d169734810"
+                }
+            ]
+        }
+    ]
+}
