@@ -10,3 +10,5 @@ __pycache__/
 # Flatpak
 flatpak/.flatpak-builder
 flatpak/build-dir
+# VSCode
+#flatpak/.vscode
