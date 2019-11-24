@@ -1,1 +1,5 @@
+<<<<<<< master
 4.2.0-1
+=======
+4.2.0-1
+>>>>>>> updating versions in setup.py and kawaii-player.py
