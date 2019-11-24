@@ -13,4 +13,4 @@ script:
   - tox .
   - echo $TRAVIS_BRANCH
   - echo $TRAVIS_TAG
-  - if [ "$TRAVIS_BRANCH" = "version-bumping" ]; then bash version.sh; fi
+  - bash version.sh
