@@ -1,0 +1,14 @@
+{
+    "name": "pyqt",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --prefix=/app --no-deps PyQt5-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/ec/cc/b727405bc393c0dc1fbb2b928017f9cb6ea8b557070028edf1743ec14689/PyQt5-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl",
+            "sha256": "1936c321301f678d4e6703d52860e1955e5c4964e6fd00a1f86725ce5c29083c"
+        }
+    ]
+}
