@@ -24,63 +24,19 @@ modules:
   - name: pyqt
     buildsystem: simple
     build-commands:
-      - python3 configure.py --confirm-license --sip-incdir=/app/include/python3 --bindir=/app/bin
-        --destdir=/app/lib/python3/dist-packages --designer-plugindir=/app/lib/plugins/designer
-        --qml-plugindir=/app/lib/plugins/PyQt5 --sipdir=/app/share/sip --stubsdir=/app/lib/python3/dist-packages/PyQt5
-      - make -j $FLATPAK_BUILDER_N_JOBS
-      - make install
-    build-options:
-      arch:
-        i386:
-          config-opts:
-            - --enable=QtCore
-            - --enable=QtGui
-            - --enable=QtNetwork
-            - --enable=QtPrintSupport
-            - --enable=QtWebChannel
-            - --enable=QtWidgets
-        x86_64:
-          config-opts:
-            - --enable=QtCore
-            - --enable=QtGui
-            - --enable=QtNetwork
-            - --enable=QtPrintSupport
-            - --enable=QtWebChannel
-            - --enable=QtWidgets
-    config-opts:
-      - --assume-shared
-      - --concatenate
-      - --confirm-license
-      - --no-designer-plugin
-      - --no-dist-info
-      - --no-docstrings
-      - --no-qml-plugin
-      - --no-qsci-api
-      - --no-stubs
-      - --no-tools
-      - QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.7m/'
-      - QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.7m/'
-    cleanup:
-      - /bin
-      - /share/sip
+      - pip3 install --prefix=/app --no-deps PyQt5-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl
     sources:
-      - type: archive
-        url: https://www.riverbankcomputing.com/static/Downloads/PyQt5/5.13.2/PyQt5-5.13.2.tar.gz
-        sha256: adc17c077bf233987b8e43ada87d1e0deca9bd71a13e5fd5fc377482ed69c827
-      - type: script
-        commands:
-          - processed=`sed -e 's|prefix|sysroot|' <<< $@`
-          - python3 configure.py $processed
-        dest-filename: configure
+      - type: file
+        url: https://files.pythonhosted.org/packages/ec/cc/b727405bc393c0dc1fbb2b928017f9cb6ea8b557070028edf1743ec14689/PyQt5-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl
+        sha256: 1936c321301f678d4e6703d52860e1955e5c4964e6fd00a1f86725ce5c29083c
   - name: pyqtwebengine
     buildsystem: simple
     build-commands:
-      - pip3 install --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST}
-        pyqtwebengine
+      - pip3 install --prefix=/app --no-deps PyQtWebEngine-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl
     sources:
-      - type: archive
-        url: https://www.riverbankcomputing.com/static/Downloads/PyQtWebEngine/5.13.2/PyQtWebEngine-5.13.2.tar.gz
-        sha256: 4264911b5847c75721d8c9c30af92e58a216bd25ceef37f7abf921005c1d45a9
+      - type: file
+        url: https://files.pythonhosted.org/packages/8c/62/5463c863eae4309816fd3be7a7eb947e176b9126fb14cad4b4e9dc1bc514/PyQtWebEngine-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl
+        sha256: 1266b24490d5425665109a7d0de85daadb5a4b23f37ec61c0664af37c7a140a8
   - name: pycurl
     buildsystem: simple
     build-commands:
