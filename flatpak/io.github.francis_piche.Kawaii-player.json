@@ -82,7 +82,8 @@
             "name": "kawaii-player",
             "buildsystem": "simple",
             "build-commands": [
-                "python3 setup.py sdist"
+                "python3 setup.py sdist",
+                "pip3 install --prefix=/app dist/kawaii-player-*.tar.gz"
             ],
             "sources": [
                 {
