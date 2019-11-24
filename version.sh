@@ -20,8 +20,7 @@ commit_website_files() {
         echo "Updating $VERSION to file ${FILE}"
         cp ${FILE}_template $FILE    
         sed -i "s/{VERSION}/$VERSION/" ${FILE}
-        
-    
+   
         git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
         git commit -m "Automated version change"
         # --author="Travis <kanishka.linux@gmail.com>"
@@ -30,7 +29,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin-pages https://${GITHUB_TOKEN}@github.com/francis-piche/kawaii-player.git > /dev/null 2>&1
-  git push
+  git push origin HEAD:master
 }
 
 setup_git
