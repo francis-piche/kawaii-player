@@ -20,47 +20,77 @@ along with hlspy.  If not, see <http://www.gnu.org/licenses/>.
 from PyQt5 import QtWebEngineCore
 from PyQt5.QtCore import pyqtSignal
 
+
 class NetManager(QtWebEngineCore.QWebEngineUrlRequestInterceptor):
     netS = pyqtSignal(str)
+
     def __init__(
-            self, parent=None, url=None, print_request=None, block_request=None, 
-            default_block=None, select_request=None, get_link=None):
+        self,
+        parent=None,
+        url=None,
+        print_request=None,
+        block_request=None,
+        default_block=None,
+        select_request=None,
+        get_link=None,
+    ):
         super(NetManager, self).__init__(parent)
         self.url = url
         self.print_request = print_request
         if block_request:
-            self.block_request = block_request.split(',')
+            self.block_request = block_request.split(",")
         else:
             self.block_request = []
         self.default_block = default_block
         self.select_request = select_request
         self.get_link = get_link
-        
+
     def interceptRequest(self, info):
         t = info.requestUrl()
         urlLnk = t.url()
         if self.get_link:
             if self.get_link in urlLnk:
                 self.netS.emit(urlLnk)
-        block_url = ''
-        
+        block_url = ""
+
         lower_case = urlLnk.lower()
         lst = []
         if self.default_block:
             lst = [
-                "doubleclick.net", 'adnxs', r"||youtube-nocookie.com/gen_204?", 
-                 r"youtube.com###watch-branded-actions", "imagemapurl", 
-                 "b.scorecardresearch.com", "rightstuff.com", "scarywater.net", 
-                "popup.js", "banner.htm", "_tribalfusion", 
-                "||n4403ad.doubleclick.net^$third-party", 
-                ".googlesyndication.com", "graphics.js", "fonts.googleapis.com/css", 
-                "s0.2mdn.net", "server.cpmstar.com", "||banzai/banner.$subdocument", 
-                "@@||anime-source.com^$document", "/pagead2.", "frugal.gif", 
-                "jriver_banner.png", "show_ads.js", 
-                '##a[href^="http://billing.frugalusenet.com/"]', 
-                "http://jriver.com/video.html", "||animenewsnetwork.com^*.aframe?", 
-                "||contextweb.com^$third-party", ".gutter", ".iab", 'revcontent', 
-                ".ads", "ads.", ".bebi", "mgid"
+                "doubleclick.net",
+                "adnxs",
+                r"||youtube-nocookie.com/gen_204?",
+                r"youtube.com###watch-branded-actions",
+                "imagemapurl",
+                "b.scorecardresearch.com",
+                "rightstuff.com",
+                "scarywater.net",
+                "popup.js",
+                "banner.htm",
+                "_tribalfusion",
+                "||n4403ad.doubleclick.net^$third-party",
+                ".googlesyndication.com",
+                "graphics.js",
+                "fonts.googleapis.com/css",
+                "s0.2mdn.net",
+                "server.cpmstar.com",
+                "||banzai/banner.$subdocument",
+                "@@||anime-source.com^$document",
+                "/pagead2.",
+                "frugal.gif",
+                "jriver_banner.png",
+                "show_ads.js",
+                '##a[href^="http://billing.frugalusenet.com/"]',
+                "http://jriver.com/video.html",
+                "||animenewsnetwork.com^*.aframe?",
+                "||contextweb.com^$third-party",
+                ".gutter",
+                ".iab",
+                "revcontent",
+                ".ads",
+                "ads.",
+                ".bebi",
+                "mgid",
             ]
         if self.block_request:
             lst = lst + self.block_request
@@ -71,6 +101,8 @@ class NetManager(QtWebEngineCore.QWebEngineUrlRequestInterceptor):
                 break
         if block:
             info.block(True)
-            
-        if (self.select_request and self.select_request in urlLnk) or self.print_request:
+
+        if (
+            self.select_request and self.select_request in urlLnk
+        ) or self.print_request:
             print(urlLnk)

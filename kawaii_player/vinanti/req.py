@@ -25,11 +25,11 @@ try:
 except ImportError:
     from log import log_function
     from formdata import Formdata
-    
+
 logger = log_function(__name__)
 
+
 class RequestObject:
-    
     def __init__(self, url, hdrs, method, backend, kargs):
         self.url = url
         self.hdrs = hdrs
@@ -41,72 +41,82 @@ class RequestObject:
         self.error = None
         self.data = None
         self.backend = backend
-        self.log = kargs.get('log')
-        self.wait = kargs.get('wait')
-        self.proxies = kargs.get('proxies')
-        self.auth = kargs.get('auth')
-        self.auth_digest = kargs.get('auth_digest')
-        self.files = kargs.get('files')
-        self.binary = kargs.get('binary')
-        self.charset = kargs.get('charset')
-        self.session = kargs.get('session')
-        self.verify = kargs.get('verify')
+        self.log = kargs.get("log")
+        self.wait = kargs.get("wait")
+        self.proxies = kargs.get("proxies")
+        self.auth = kargs.get("auth")
+        self.auth_digest = kargs.get("auth_digest")
+        self.files = kargs.get("files")
+        self.binary = kargs.get("binary")
+        self.charset = kargs.get("charset")
+        self.session = kargs.get("session")
+        self.verify = kargs.get("verify")
         if not self.log:
             logger.disabled = True
-        self.timeout = self.kargs.get('timeout')
-        self.out = self.kargs.get('out')
+        self.timeout = self.kargs.get("timeout")
+        self.out = self.kargs.get("out")
         self.out_dir = None
-        self.continue_out = self.kargs.get('continue_out')
+        self.continue_out = self.kargs.get("continue_out")
         self.__init_extra__()
-    
+
     def __init_extra__(self):
         self.data_old = None
         if self.out:
-            path_name = self.url.rsplit('/', 1)[-1]
-            if self.out == 'default' and path_name:
+            path_name = self.url.rsplit("/", 1)[-1]
+            if self.out == "default" and path_name:
                 self.out = path_name
             elif os.path.isdir(self.out) and path_name:
                 self.out_dir = self.out
                 self.out = os.path.join(self.out, path_name)
             if os.path.isfile(self.out) and self.continue_out:
                 sz = os.stat(self.out).st_size
-                self.hdrs.update({'Range':'bytes={}-'.format(sz)})
+                self.hdrs.update({"Range": "bytes={}-".format(sz)})
         if not self.hdrs:
-            self.hdrs = {"User-Agent":"Mozilla/5.0"}
+            self.hdrs = {"User-Agent": "Mozilla/5.0"}
         if not self.method:
-            self.method = 'GET'
+            self.method = "GET"
         if not self.timeout:
             self.timeout = None
-        if self.method in ['POST', 'PUT', 'DELETE', 'PATCH']:
-            self.data = self.kargs.get('data')
+        if self.method in ["POST", "PUT", "DELETE", "PATCH"]:
+            self.data = self.kargs.get("data")
             if self.data:
                 self.data_old = self.data
-                if self.backend == 'urllib':
+                if self.backend == "urllib":
                     self.data = urllib.parse.urlencode(self.data)
-                    self.data = self.data.encode('utf-8')
-        elif self.method == 'GET':
-            payload = self.kargs.get('params')
+                    self.data = self.data.encode("utf-8")
+        elif self.method == "GET":
+            payload = self.kargs.get("params")
             if payload:
                 payload = urllib.parse.urlencode(payload)
-                self.url = self.url + '?' + payload
-        if self.files and self.backend == 'urllib':
+                self.url = self.url + "?" + payload
+        if self.files and self.backend == "urllib":
             if self.data:
                 mfiles = Formdata(self.data_old, self.files)
             else:
                 mfiles = Formdata({}, self.files)
             data, hdr = mfiles.create_content()
             for key, value in hdr.items():
-                self.hdrs.update({key:value})
+                self.hdrs.update({key: value})
             self.data = data
-                                   
+
 
 class Response:
-    
-    def __init__(self, url, method=None, error=None,
-                 session_cookies=None, charset=None,
-                 info=None, status=None, content_type=None,
-                 content_encoding=None, html=None,
-                 out_file=None, out_dir=None, binary=None):
+    def __init__(
+        self,
+        url,
+        method=None,
+        error=None,
+        session_cookies=None,
+        charset=None,
+        info=None,
+        status=None,
+        content_type=None,
+        content_encoding=None,
+        html=None,
+        out_file=None,
+        out_dir=None,
+        binary=None,
+    ):
         self.method = method
         self.error = error
         self.session_cookies = session_cookies
