@@ -11,3 +11,4 @@ PyQt5-sip>=12.7.0
 PyQtWebEngine>=5.13.2
 soupsieve>=1.9.5
 youtube-dl>=2019.11.5
+PySimpleGUI>=4.6.0
