@@ -16,6 +16,20 @@
     "modules": [
         "python3-sip.json",
         {
+            "name": "pyqt-builder",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --prefix=/app ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/P/PyQt-builder/PyQt-builder-1.0.1.tar.gz",
+                    "sha256": "2d19dcd078d2f86b162f9f3adf6a74098f1f0ee03b07774b0c0d603c484f264a"
+                }
+            ]
+        },
+        {
             "name": "pyqt",
             "buildsystem": "simple",
             "build-commands": [
@@ -82,6 +96,20 @@
             ]
         },
         {
+            "name": "pyqtwebengine",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyqtwebengine"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/PyQtWebEngine/5.13.2/PyQtWebEngine-5.13.2.tar.gz",
+                    "sha256": "4264911b5847c75721d8c9c30af92e58a216bd25ceef37f7abf921005c1d45a9"
+                }
+            ]
+        },
+        {
             "name": "pycurl",
             "buildsystem": "simple",
             "build-commands": [
@@ -101,26 +129,12 @@
         "python3-lxml.json",
         "python3-youtube_dl.json",
         "python3-certifi.json",
-        {
-            "name": "pyqtwebengine",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyqtwebengine"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://www.riverbankcomputing.com/static/Downloads/PyQtWebEngine/5.13.2/PyQtWebEngine-5.13.2.tar.gz",
-                    "sha256": "4264911b5847c75721d8c9c30af92e58a216bd25ceef37f7abf921005c1d45a9"
-                }
-            ]
-        },
         "python3-PyOpenGL.json",
         {
             "name": "kawaii-player",
             "buildsystem": "simple",
             "build-commands": [
-                "python3 ../setup.py"
+                "python3 setup.py sdist"
             ],
             "sources": [
                 {
