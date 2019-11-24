@@ -10,3 +10,4 @@ include kawaii_player/web/style.css
 include kawaii_player/web/myscript.js
 include kawaii_player/kawaii-player-start
 include kawaii_player/kawaii-player
+include kawaii_player/version.txt

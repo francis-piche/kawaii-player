@@ -5,7 +5,10 @@ import platform
 from collections import OrderedDict
 from PyQt5 import QtCore, QtGui, QtWidgets
 from player_functions import ccurl, open_files
+import auto_update
 
+
+auto_update.check_update()
 
 class PlayerWidget(QtWidgets.QWidget):
     
