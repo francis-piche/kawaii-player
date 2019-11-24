@@ -24,8 +24,9 @@ import platform
 from setuptools import setup
 from importlib.machinery import SourceFileLoader
 
-auto_update = SourceFileLoader("auto_update.py", "kawaii_player/auto_update.py").load_module()
-current_version = auto_update.get_version()
+with open('kawaii_player/version.txt', 'r') as fin:
+    current_version = fin.read()
+
 current_version_split = current_version.split('.')
 version_field_1 = current_version_split[0]
 version_field_2 = current_version_split[1]
