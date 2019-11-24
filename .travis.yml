@@ -11,9 +11,9 @@ install:
   - pip install tox
 script:
   - tox .
-  - bash version.sh
+  - if [ -n "$TRAVIS_TAG" ]; then bash version.sh; fi
 deploy:
-  provider: releases
+  provider: releases    
   api_key: "$GITHUB_TOKEN"
   file: "ubuntu/kawaii-player-$TRAVIS_TAG.deb"
   skip_cleanup: true

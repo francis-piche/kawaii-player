@@ -6,26 +6,24 @@ setup_git() {
 }
 
 commit_website_files() {
-    echo $TRAVIS_TAG
+    
+    VERSION=$(echo "$TRAVIS_TAG" | sed -r 's/v//g')
+    V=$(echo "$VERSION" | sed -r 's/-/./g')
+         
+    FILE="kawaii_player/version.txt"
+    echo "Updating $VERSION to file $FILE"
+    echo $VERSION > $FILE
 
-    case $TRAVIS_TAG in v*)
-        VERSION=$(echo "$TRAVIS_TAG" | sed -r 's/v//g')
-        V=$(echo "$VERSION" | sed -r 's/-/./g')
-             
-        FILE="kawaii_player/version.txt"
-        echo "Updating $VERSION to file $FILE"
-        echo $VERSION > $FILE
+    FILE="ubuntu/DEBIAN/control"
+    echo "Updating $VERSION to file ${FILE}"
+    cp ${FILE}_template $FILE    
+    sed -i "s/{VERSION}/$TRAVIS_TAG/" ${FILE}
+    
+    git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
+    git commit -m "Automated version change"
 
-        FILE="ubuntu/DEBIAN/control"
-        echo "Updating $VERSION to file ${FILE}"
-        cp ${FILE}_template $FILE    
-        sed -i "s/{VERSION}/$VERSION/" ${FILE}
-        
-        git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
-        git commit -m "Automated version change"
+    python3 ubuntu/create_deb.py
 
-        python3 ubuntu/create_deb.py
-    esac
 }
 
 upload_files() {
