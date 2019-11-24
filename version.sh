@@ -30,7 +30,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin-pages https://${GITHUB_TOKEN}@github.com/francis-piche/kawaii-player.git > /dev/null 2>&1
-  git push --quiet --set-upstream $TRAVIS_BRANCH $TRAVIS_BRANCH 
+  git push
 }
 
 setup_git
