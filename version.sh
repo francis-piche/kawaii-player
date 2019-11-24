@@ -28,8 +28,8 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin https://${GITHUB_TOKEN}@github.com/francis-piche/kawaii-player.git > /dev/null 2>&1
-  git push origin HEAD:master
+  git remote add origin-travis https://${GITHUB_TOKEN}@github.com/francis-piche/kawaii-player.git > /dev/null 2>&1
+  git push origin-travis HEAD:master
 }
 
 setup_git
