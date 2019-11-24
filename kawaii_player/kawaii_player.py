@@ -18,6 +18,7 @@ along with kawaii-player.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
+import auto_update
 
 OSNAME = os.name
 
@@ -88,6 +89,14 @@ from yt import YTDL
 from ds import CustomList
 from meta_engine import MetaEngine
 from guisignals import GUISignals
+
+current_version = auto_update.get_version()
+current_version_split = current_version.split('.')
+version_field_1 = int(current_version_split[0])
+version_field_2 = int(current_version_split[1])
+version_field_3 = int(current_version_split[2].split('-')[0])
+version_field_4 = int(current_version_split[2].split('-')[1])
+
 
 HOME_DIR = get_home_dir()
 HOME_OPT_FILE = os.path.join(HOME_DIR, "other_options.txt")
@@ -1522,7 +1531,7 @@ class Ui_MainWindow(object):
         self.mplayer_timer = QtCore.QTimer()
         self.mplayer_timer.timeout.connect(self.mplayer_unpause)
         self.mplayer_timer.setSingleShot(True)
-        self.version_number = (4, 2, 0, 1)
+        self.version_number = (version_field_1, version_field_2, version_field_3, version_field_4)
         self.threadPool = []
         self.threadPoolthumb = []
         self.thumbnail_cnt = 0

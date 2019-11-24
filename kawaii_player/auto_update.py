@@ -36,9 +36,10 @@ def check_update():
     if req.status_code == requests.codes.ok:
         req = req.json()  # the response is a JSON
         content = base64.b64decode(req['content']).decode('utf-8')
-        matchObj = re.search("(\d+\.)(\d+\.)(\d)", content)
-        version = matchObj.group()
-        if(version == current_version):
+        version = content
+        # matchObj = re.search("(\d+\.)(\d+\.)(\d)", content)
+        # version = matchObj.group()
+        if(version.strip() == current_version.strip()):
             print('version is up to date')
         else:
             print('update available')
@@ -53,3 +54,17 @@ def check_update():
                 window.close()
     else:
         print('Kawii-updater Error: Unable to verify current version from github')
+
+def get_version():
+    if getattr(sys, 'frozen', False):
+        BASEDIR, BASEFILE = os.path.split(os.path.abspath(sys.executable))
+    else:
+        BASEDIR, BASEFILE = os.path.split(os.path.abspath(__file__))
+        print(BASEDIR, BASEFILE, os.getcwd())
+        sys.path.insert(0, BASEDIR)
+        RESOURCE_DIR = os.path.join(BASEDIR, 'version.txt')
+
+    with open(RESOURCE_DIR, 'r') as fin:
+        current_version = fin.read()
+
+    return current_version
