@@ -22,22 +22,31 @@ import os
 import shutil
 import platform
 from setuptools import setup
+from importlib.machinery import SourceFileLoader
 
+with open('kawaii_player/version.txt', 'r') as fin:
+    current_version = fin.read()
 
+current_version_split = current_version.split('.')
+version_field_1 = current_version_split[0]
+version_field_2 = current_version_split[1]
+version_field_3 = current_version_split[2].split('-')[0]
+
+version = version_field_1 + '.' + version_field_2 + '.' + version_field_3
 """
  GNU/Linux users should install dependencies manually using their native
  package manager
 """
+
 if os.name == 'posix':
     install_dependencies = []
 else:
-    install_dependencies = [
-        'PyQt5', 'pycurl', 'bs4', 'Pillow', 'mutagen', 'lxml', 'youtube_dl',
-        'certifi', 'PyQtWebEngine', 'PyOpenGL'
-        ]
+    with open('requirements.txt') as f:
+        install_dependencies = f.read().strip().split('\n')
+
 setup(
     name='kawaii-player', 
-    version='4.2.0', 
+    version=version, 
     license='GPLv3', 
     author='kanishka-linux', 
     author_email='kanishka.linux@gmail.com', 
