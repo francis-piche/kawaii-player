@@ -90,6 +90,7 @@ from ds import CustomList
 from meta_engine import MetaEngine
 from guisignals import GUISignals
 
+
 current_version = auto_update.get_version()
 current_version_split = current_version.split('.')
 version_field_1 = int(current_version_split[0])
@@ -15743,6 +15744,7 @@ def main():
     global desktop_session
     global html_default_arr, app
 
+    auto_update.check_update()
     default_arr_setting = [0, 0, 0, 0, 0]
     music_arr_setting = [0, 0, 0]
     show_hide_player = 0
