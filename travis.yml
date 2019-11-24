@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.6"
+before_install:
+  - sudo add-apt-repository -y ppa:mc3man/mpv-tests
+  - sudo apt-get update
+  - sudo apt-get -y install libgnutls28-dev
+  - sudo apt-get -y install libmpv1
+install:
+  - pip install tox
+script:
+  - tox .
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then ./version.sh; fi
