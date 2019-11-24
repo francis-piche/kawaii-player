@@ -2,8 +2,10 @@ language: python
 python:
   - "3.6"
 before_install:
+  - sudo add-apt-repository -y ppa:mc3man/mpv-tests
+  - sudo apt-get update
   - sudo apt-get -y install libgnutls28-dev
-  - sudo apt-get -y install mpv-libs
+  - sudo apt-get -y install mpv
 install:
   - pip install tox
 script:
