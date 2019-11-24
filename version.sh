@@ -23,7 +23,8 @@ commit_website_files() {
         
         git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
         git commit -m "Automated version change"
-        # --author="Travis <kanishka.linux@gmail.com>"
+
+        python3 ubuntu/create_deb.py
     esac
 }
 
