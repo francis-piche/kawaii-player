@@ -12,3 +12,6 @@ flatpak/.flatpak-builder
 flatpak/build-dir
 # VSCode
 #flatpak/.vscode
+
+dist
+kawaii_player.egg-info
