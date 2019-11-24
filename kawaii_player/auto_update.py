@@ -31,7 +31,7 @@ def check_update():
               [sg.Button('Yes'), sg.Button('No')]]
 
     cmd = 'echo current user version is: ' + str(current_version)
-    url = 'https://api.github.com/repos/francis-piche/kawaii-player/contents/kawaii_player/resources/version_number'
+    url = 'https://api.github.com/repos/francis-piche/kawaii-player/contents/kawaii_player/version.txt'
     req = requests.get(url)
     if req.status_code == requests.codes.ok:
         req = req.json()  # the response is a JSON
