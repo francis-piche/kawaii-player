@@ -11,4 +11,4 @@ install:
   - pip install tox
 script:
   - tox .
-  - if [ "$TRAVIS_BRANCH" = "version-bumping" ]; then ./version.sh; fi
+  - bash version.sh
