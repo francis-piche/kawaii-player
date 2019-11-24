@@ -2,6 +2,8 @@
 
 #get highest tag number
 VERSION=`git describe --abbrev=0 --tags`
+#FILES=("kawaii_player.py/kawaii-player.py" "setup.py" "kawaii_player.py/version.txt" "kawaii-player/ubuntu/DEBIAN/control") 
+
 
 #replace . with space so can split into an array
 VERSION_BITS=(${VERSION//./ })
@@ -13,9 +15,14 @@ VNUM3=${VERSION_BITS[2]}
 #VNUM3=$((VNUM3+1))
 
 #create new tag
-NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
+#NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
 
-echo "Updating $VERSION to $NEW_TAG"
+FILE="kawaii_player.py/kawaii-player.py"
+echo "Updating $VERSION to file $FILE"
+sed -i  's/address=.*/address='$addr'/' $FILE
+
+#kawaii_player.py/kawaii-player.py sed 's/foo/bar/'
+
 
 #get current hash and see if it already has a tag
 GIT_COMMIT=`git rev-parse HEAD`
