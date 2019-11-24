@@ -22,6 +22,7 @@ commit_website_files() {
         sed -i "s/{VERSION}/$VERSION/" ${FILE}
         
         git checkout master
+        git pull master        
         git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
         git commit -m "Automated version change"
         # --author="Travis <kanishka.linux@gmail.com>"
