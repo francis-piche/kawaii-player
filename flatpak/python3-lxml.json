@@ -2,13 +2,13 @@
     "name": "python3-lxml",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} lxml"
+        "pip3 install --prefix=/app lxml-4.4.1-cp37-cp37m-manylinux1_x86_64.whl"
     ],
     "sources": [
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/c4/43/3f1e7d742e2a7925be180b6af5e0f67d38de2f37560365ac1a0b9a04c015/lxml-4.4.1.tar.gz",
-            "sha256": "c81cb40bff373ab7a7446d6bbca0190bccc5be3448b47b51d729e37799bb5692"
+            "url": "https://files.pythonhosted.org/packages/e7/a8/40115c84414c017e1a293f331709eb7534303d3ccd11ef805ac09b1481e7/lxml-4.4.1-cp37-cp37m-manylinux1_x86_64.whl",
+            "sha256": "6b899931a5648862c7b88c795eddff7588fb585e81cecce20f8d9da16eff96e0"
         }
     ]
 }
