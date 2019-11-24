@@ -6,6 +6,8 @@ setup_git() {
 }
 
 commit_website_files() {
+    echo $TRAVIS_TAG
+
     case $TRAVIS_TAG in v*)
         VERSION=$(echo "$TRAVIS_TAG" | sed -r 's/v//g')
         V=$(echo "$VERSION" | sed -r 's/-/./g')
