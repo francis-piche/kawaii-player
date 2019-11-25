@@ -8,7 +8,7 @@ __pycache__/
 .pytest_cache/
 
 # Flatpak
-flatpak/.flatpak-builder
+**/.flatpak-builder
 flatpak/build-dir
 # VSCode
 #flatpak/.vscode
