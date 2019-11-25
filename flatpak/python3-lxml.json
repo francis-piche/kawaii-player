@@ -1,0 +1,14 @@
+{
+    "name": "python3-lxml",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --prefix=/app lxml-4.4.1-cp37-cp37m-manylinux1_x86_64.whl"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/e7/a8/40115c84414c017e1a293f331709eb7534303d3ccd11ef805ac09b1481e7/lxml-4.4.1-cp37-cp37m-manylinux1_x86_64.whl",
+            "sha256": "6b899931a5648862c7b88c795eddff7588fb585e81cecce20f8d9da16eff96e0"
+        }
+    ]
+}

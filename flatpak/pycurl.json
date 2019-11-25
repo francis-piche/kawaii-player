@@ -1,0 +1,15 @@
+{
+    "name": "pycurl",
+    "buildsystem": "simple",
+    "build-commands": [
+        "export PYCURL_SSL_LIBRARY=gnutls",
+        "pip3 install --prefix=/app . --global-option=--with-gnutls"
+    ],
+    "sources": [
+        {
+            "type": "archive",
+            "url": "https://files.pythonhosted.org/packages/source/p/pycurl/pycurl-7.43.0.3.tar.gz",
+            "sha256": "6f08330c5cf79fa8ef68b9912b9901db7ffd34b63e225dce74db56bb21deda8e"
+        }
+    ]
+}

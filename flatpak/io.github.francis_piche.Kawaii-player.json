@@ -1,0 +1,44 @@
+{
+    "app-id": "io.github.francis_piche.Kawaii-player",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "19.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "kawaii-player",
+    "finish-args": [
+        "--socket=x11",
+        "--share=ipc",
+        "--device=dri",
+        "--socket=pulseaudio",
+        "--share=network",
+        "--filesystem=host",
+        "--env=PYTHONPATH=/app/lib/python3.7/site-packages"
+    ],
+    "modules": [
+        "sip.json",
+        "pyqt.json",
+        "pyqtwebengine.json",
+        "pycurl.json",
+        "python3-bs4.json",
+        "python3-Pillow.json",
+        "python3-mutagen.json",
+        "python3-lxml.json",
+        "python3-youtube_dl.json",
+        "python3-certifi.json",
+        "python3-PyOpenGL.json",
+        {
+            "name": "kawaii-player",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python3 setup.py sdist",
+                "pip3 install --prefix=/app dist/kawaii-player-*.tar.gz"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "path": "../",
+                    "branch": "flatpak"
+                }
+            ]
+        }
+    ]
+}

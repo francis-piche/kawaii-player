@@ -1,6 +1,18 @@
+# Python headers
 *.pyc
 __pycache__/
+
+# Tox and tests
 .tox/
 .coverage
 .pytest_cache/
 *.egg-info
+kawaii_player.egg-info
+
+# Flatpak
+**/.flatpak-builder
+flatpak/build-dir
+# VSCode
+#flatpak/.vscode
+
+dist

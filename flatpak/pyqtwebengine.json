@@ -1,0 +1,14 @@
+{
+    "name": "pyqtwebengine",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --prefix=/app --no-deps PyQtWebEngine-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/8c/62/5463c863eae4309816fd3be7a7eb947e176b9126fb14cad4b4e9dc1bc514/PyQtWebEngine-5.13.2-5.13.2-cp35.cp36.cp37.cp38-abi3-manylinux1_x86_64.whl",
+            "sha256": "1266b24490d5425665109a7d0de85daadb5a4b23f37ec61c0664af37c7a140a8"
+        }
+    ]
+}
