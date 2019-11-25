@@ -1,0 +1,19 @@
+{
+    "name": "sip",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --prefix=/app ."
+    ],
+    "sources": [
+        {
+            "type": "archive",
+            "url": "https://www.riverbankcomputing.com/static/Downloads/sip/sip-5.0.1.dev1910120956.tar.gz",
+            "sha256": "53f3ee55dae735e2f47ea8f1e220272982df938845b3436325c838f5317d4f92"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/cc/1d/d7d68e7677f1a02e3d0615f1e22d7340cd453d53edca481b8b099e97175a/sip-5.0.0-cp37-cp37m-manylinux1_x86_64.whl",
+            "sha256": "387b4388efab7ee0bd7e9009ad736ad6f2002bb8d3b996c761bf89c2660509c2"
+        }
+    ]
+}

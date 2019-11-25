@@ -11,10 +11,11 @@
         "--socket=pulseaudio",
         "--share=network",
         "--filesystem=host",
-        "--env=PYTHONPATH=/app/lib/python3/dist-packages"
+        "--env=PYTHONPATH=/app/lib/python3.7/site-packages"
     ],
     "modules": [
         "python3-sip.json",
+        "sip.json",
         "pyqt.json",
         "pyqtwebengine.json",
         "pycurl.json",
