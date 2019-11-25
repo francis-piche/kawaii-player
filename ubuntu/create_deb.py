@@ -21,7 +21,7 @@ for i in lines:
 	i = i.strip()
 	if i.startswith('Version:'):
 		version_num = i.replace('Version:','',1).strip()
-		dest_dir = os.path.join(BASEDIR,'kawaii-player-'+version_num)
+		dest_dir = os.path.join(BASEDIR,'kawaii-player')
 		break
 
 usr_share = os.path.join(dest_dir,'usr','share','applications')

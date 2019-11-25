@@ -15,7 +15,7 @@ script:
 deploy:
   provider: releases    
   api_key: "$GITHUB_TOKEN"
-  file: "ubuntu/kawaii-player-$TRAVIS_TAG.deb"
+  file: "ubuntu/kawaii-player.deb"
   skip_cleanup: true
   on:
     tags: true
