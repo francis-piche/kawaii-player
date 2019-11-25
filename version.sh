@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TRAVIS_TAG=v5.5.0-2
+
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
@@ -17,7 +19,7 @@ commit_website_files() {
     FILE="ubuntu/DEBIAN/control"
     echo "Updating $VERSION to file ${FILE}"
     cp ${FILE}_template $FILE    
-    sed -i "s/{VERSION}/$TRAVIS_TAG/" ${FILE}
+    sed -i "s/{VERSION}/$VERSION/" ${FILE}
     
     git add "kawaii_player/version.txt" "ubuntu/DEBIAN/control"
     git commit -m "Automated version change"
