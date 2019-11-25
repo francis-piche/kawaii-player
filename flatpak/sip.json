@@ -2,8 +2,9 @@
     "name": "sip",
     "buildsystem": "simple",
     "build-commands": [
-        "echo python3 configure.py --bindir=/app/bin --destdir=/app/lib/python3.7/site-packages --incdir=/app/include --pyidir=/app/lib/python3.7/site-packages --sipdir=/app/share/sip --sip-module=PyQt5.sip",
-        "pip3 install --prefix=/app --no-deps ."
+        "python3 configure.py --bindir=/app/bin --destdir=/app/lib/python3.7/site-packages --incdir=/app/include --pyidir=/app/lib/python3.7/site-packages --sipdir=/app/share/sip --sip-module=PyQt5.sip",
+        "make -j $FLATPAK_BUILDER_N_JOBS",
+        "make install"
     ],
     "config-opts": [
         "--bindir=/app/bin",
@@ -16,13 +17,8 @@
     "sources": [
         {
             "type": "archive",
-            "url": "https://www.riverbankcomputing.com/static/Downloads/sip/sip-5.0.1.dev1910120956.tar.gz",
-            "sha256": "53f3ee55dae735e2f47ea8f1e220272982df938845b3436325c838f5317d4f92"
-        },
-        {
-            "type": "file",
-            "url": "https://files.pythonhosted.org/packages/cc/1d/d7d68e7677f1a02e3d0615f1e22d7340cd453d53edca481b8b099e97175a/sip-5.0.0-cp37-cp37m-manylinux1_x86_64.whl",
-            "sha256": "387b4388efab7ee0bd7e9009ad736ad6f2002bb8d3b996c761bf89c2660509c2"
+            "url": "https://www.riverbankcomputing.com/static/Downloads/sip/4.19.19/sip-4.19.19.tar.gz",
+            "sha256": "5436b61a78f48c7e8078e93a6b59453ad33780f80c644e5f3af39f94be1ede44"
         }
     ]
 }

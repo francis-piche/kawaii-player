@@ -25,6 +25,7 @@
         "python3-youtube_dl.json",
         "python3-certifi.json",
         "python3-PyOpenGL.json",
+        "libmpv.json",
         {
             "name": "kawaii-player",
             "buildsystem": "simple",
