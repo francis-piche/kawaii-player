@@ -23,8 +23,6 @@ commit_website_files() {
     git commit -m "Automated version change"
 
     python3 ubuntu/create_deb.py
-    cd ubuntu
-    ls
 }
 
 upload_files() {
