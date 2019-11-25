@@ -2,7 +2,16 @@
     "name": "sip",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --prefix=/app ."
+        "echo python3 configure.py --bindir=/app/bin --destdir=/app/lib/python3.7/site-packages --incdir=/app/include --pyidir=/app/lib/python3.7/site-packages --sipdir=/app/share/sip --sip-module=PyQt5.sip",
+        "pip3 install --prefix=/app --no-deps ."
+    ],
+    "config-opts": [
+        "--bindir=/app/bin",
+        "--destdir=/app/lib/python3.7/site-packages",
+        "--incdir=/app/include",
+        "--pyidir=/app/lib/python3.7/site-packages",
+        "--sipdir=/app/share/sip",
+        "--sip-module=PyQt5.sip"
     ],
     "sources": [
         {

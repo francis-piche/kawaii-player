@@ -14,7 +14,6 @@
         "--env=PYTHONPATH=/app/lib/python3.7/site-packages"
     ],
     "modules": [
-        "python3-sip.json",
         "sip.json",
         "pyqt.json",
         "pyqtwebengine.json",

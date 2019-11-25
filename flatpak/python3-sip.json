@@ -4,6 +4,14 @@
     "build-commands": [
         "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} sip"
     ],
+    "config-opts": [
+        "--bindir=/app/bin",
+        "--destdir=/app/lib/python3.7/site-packages",
+        "--incdir=/app/include",
+        "--pyidir=/app/lib/python3.7/site-packages",
+        "--sipdir=/app/share/sip",
+        "--sip-module=PyQt5.sip"
+    ],
     "sources": [
         {
             "type": "file",
