@@ -11,4 +11,11 @@ install:
   - pip install tox
 script:
   - tox .
-  - if [ "$TRAVIS_BRANCH" = "version-bumping" ]; then ./version.sh; fi
+  - if [ -n "$TRAVIS_TAG" ]; then bash version.sh; fi
+deploy:
+  provider: releases    
+  api_key: "$GITHUB_TOKEN"
+  file: "ubuntu/kawaii-player-pkg.deb"
+  skip_cleanup: true
+  on:
+    tags: true
